@@ -2,7 +2,7 @@
 
 = Algorithm Design =
 
-The algorithm follows the basics of the 3n+1 problem found on Professor Downing's specification:
+The algorithm follows the basics of the SMP problem found on Professor Downing's specification:
    # identify a free man
    # identify the highest-ranked woman to whom he has not yet proposed
    # if the woman is currently engaged, identify her current partner
@@ -31,7 +31,10 @@ We used a dictionary to store the engaged couples.
 == 4. for woman w and men m and m', decide which is preferred by w == 
 TBA
 
-== Results ==
+= Testing =
+We wrote a check function that validates each pair of man-woman engagements. All pairs are valid if there is no pair that both prefer each other to their current partners.
+
+= Results =
   * Without optimizations, Sphere accepted our result in 1.11 seconds (fastest)
   * Interestingly, adding the deque for optimizations 1 and 2 slowed down our results
     ** Without optimizations 1 and 2: 1.62 , 1.44, 1.87
