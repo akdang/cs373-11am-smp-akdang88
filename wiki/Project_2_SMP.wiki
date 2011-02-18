@@ -1,0 +1,42 @@
+#summary CS 373 Project 2: SMP
+
+= Algorithm Design =
+
+The algorithm follows the basics of the 3n+1 problem found on Professor Downing's specification:
+   1. identify a free man
+
+   2. identify the highest-ranked woman to whom he has not yet proposed
+
+   3. if the woman is currently engaged, identify her current partner
+
+   4. for a woman w and two men m and m', decide which of m or m' is preferred by w
+
+We were encouraged to start with a simple implementation of algorithm, without worrying about the quadratic run time requirement. Once we were sure the simple solution was correct, a more efficient solution was implemented with each step 1-4 running in constant time.
+
+
+= Optimizations =
+
+== 1. identify a free man == 
+We used a deque (http://docs.python.org/library/collections.html#collections.deque)
+   * Deques allows for O(1) pop and append at the beginning and end of a list.
+   * We pop men off the free list when they become engaged, and append if their fiance leaves
+
+== 2. identify the highest-ranked woman to whom he has not yet proposed == 
+Similar to #1, we used the constant time pop from deque.
+   * Deques allows for O(1) pop and append at the beginning and end of a list.
+   * We pop the highest ranked woman from each man's preference list
+
+== 3. if the woman is currently engaged, identify her current partner == 
+We used a dictionary to store the engaged couples.
+   * Dictionaries allow for O(1) look ups
+   * We look up the woman's current partner using the index operator
+
+== 4. for woman w and men m and m', decide which is preferred by w == 
+TBA
+
+== Results ==
+  * Without optimizations, Sphere accepted our result in 1.11 seconds (fastest)
+  * Interestingly, adding the deque for optimizations 1 and 2 slowed down our results
+    ** Without optimizations 1 and 2: 1.62 , 1.44, 1.87
+    ** With optimizations 1 and 2: 2.04, 1.88, 2.10
+    ** One reason might be because of Sphere's test input.  We don't know what it is, so it could very well not make the fullest use of the optimizations.
