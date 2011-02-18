@@ -3,13 +3,10 @@
 = Algorithm Design =
 
 The algorithm follows the basics of the 3n+1 problem found on Professor Downing's specification:
-   1. identify a free man
-
-   2. identify the highest-ranked woman to whom he has not yet proposed
-
-   3. if the woman is currently engaged, identify her current partner
-
-   4. for a woman w and two men m and m', decide which of m or m' is preferred by w
+   # identify a free man
+   # identify the highest-ranked woman to whom he has not yet proposed
+   # if the woman is currently engaged, identify her current partner
+   # for a woman w and two men m and m', decide which of m or m' is preferred by w
 
 We were encouraged to start with a simple implementation of algorithm, without worrying about the quadratic run time requirement. Once we were sure the simple solution was correct, a more efficient solution was implemented with each step 1-4 running in constant time.
 
