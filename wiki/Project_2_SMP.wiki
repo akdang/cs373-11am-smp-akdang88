@@ -29,7 +29,8 @@ We used a dictionary to store the engaged couples.
    * We look up the woman's current partner using the index operator
 
 == 4. for woman w and men m and m', decide which is preferred by w == 
-TBA
+For each woman, we used a dictionary to rank their preference for each man
+   * Determining woman w's highest preferences is O(1)
 
 = Testing =
 We wrote a check function that validates each pair of man-woman engagements. All pairs are valid if there is no pair that both prefer each other to their current partners.
