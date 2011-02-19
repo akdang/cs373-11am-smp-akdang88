@@ -42,6 +42,6 @@ For each woman, we used a dictionary to rank their preference for each man
 = Results =
   * Without optimizations, Sphere accepted our result in 1.11 seconds (fastest)
   * Interestingly, adding optimizations slowed down our results
-    ** Without optimizations 1 and 2: 1.62 , 1.44, 1.87
-    ** With optimizations 1 and 2: 2.04, 1.88, 2.10
+    ** Without optimizations: 1.31, 1.59, 1.22
+    ** With optimizations: 2.19, 2.70, 2.32
     ** One reason might be because of Sphere's test input.  We don't know what it is, so it could very well not make the fullest use of the optimizations.
