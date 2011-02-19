@@ -14,30 +14,34 @@ We were encouraged to start with a simple implementation of algorithm, without w
 = Optimizations =
 
 == 1. identify a free man == 
-We used a deque (http://docs.python.org/library/collections.html#collections.deque)
-   * Deques allows for O(1) pop and append at the beginning and end of a list.
-   * We pop men off the free list when they become engaged, and append if their fiance leaves
+We kept a list of free men and treated it like a stack
+   * Pop from top, append to top (end of list) are O(1)
+   * We pop men off when they become engaged, and append if their fiance leaves and they are single again
 
 == 2. identify the highest-ranked woman to whom he has not yet proposed == 
-Similar to #1, we used the constant time pop from deque.
-   * Deques allows for O(1) pop and append at the beginning and end of a list.
-   * We pop the highest ranked woman from each man's preference list
+Each man has an iterable list of his preferences
+   * We iterate through the woman in order and check if they are engaged
+   * We kept a dictionary of engagements to make the look up O(1)
 
 == 3. if the woman is currently engaged, identify her current partner == 
-We used a dictionary to store the engaged couples.
+We used a dictionary to store the engaged couples
    * Dictionaries allow for O(1) look ups
-   * We look up the woman's current partner using the index operator
+   * We look up the woman's current partner using the subscript operator
 
 == 4. for woman w and men m and m', decide which is preferred by w == 
 For each woman, we used a dictionary to rank their preference for each man
-   * Determining woman w's highest preferences is O(1)
+   * For example, woman 1 prefers men 4 3 1 2
+     * Since man 4 is in rank 1, the dictionary entry will be (4, 1)
+     * Man 3 is in rank 2, so (3, 2) and so on.
+   * Determining woman w's highest preferences is O(1) because we can use the dictionary look up to compare the ranks between two men.
 
 = Testing =
-We wrote a check function that validates each pair of man-woman engagements. All pairs are valid if there is no pair that both prefer each other to their current partners.
+   * We wrote a check function that validates each pair of man-woman engagements. All pairs are valid if there is no pair that both prefer each other to their current partners.
+   * We also created a random generator to make acceptance tests 
 
 = Results =
   * Without optimizations, Sphere accepted our result in 1.11 seconds (fastest)
-  * Interestingly, adding the deque for optimizations 1 and 2 slowed down our results
+  * Interestingly, adding optimizations slowed down our results
     ** Without optimizations 1 and 2: 1.62 , 1.44, 1.87
     ** With optimizations 1 and 2: 2.04, 1.88, 2.10
     ** One reason might be because of Sphere's test input.  We don't know what it is, so it could very well not make the fullest use of the optimizations.
