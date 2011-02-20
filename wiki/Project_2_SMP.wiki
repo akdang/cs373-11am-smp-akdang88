@@ -45,4 +45,4 @@ For each woman, we used a dictionary to rank their preference for each man
     ** Without optimizations: 1.31, 1.59, 1.22
     ** With optimizations: 2.19, 2.70, 2.32
     ** One reason might be because of Sphere's test input.  We don't know what it is, so it could very well not make the fullest use of the optimizations.
-  * It should also be noted that our output is sorted by strings, not ints. Therefore, the couple with man 1 and 10 will be outputted before the couple with man 2. 
+  * It should also be noted that our output is sorted by strings, not ints. Therefore, the couples with man 1 and 10 will be outputted before the couple with man 2. 
