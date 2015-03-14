@@ -1,0 +1,1 @@
+Solve the Simple Marriage Problem: http://www.spoj.pl/problems/STABLEMP/

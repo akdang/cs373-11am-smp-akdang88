@@ -1,0 +1,46 @@
+# Algorithm Design #
+
+The algorithm follows the basics of the SMP problem found on Professor Downing's specification:
+  1. identify a free man
+  1. identify the highest-ranked woman to whom he has not yet proposed
+  1. if the woman is currently engaged, identify her current partner
+  1. for a woman w and two men m and m', decide which of m or m' is preferred by w
+
+We were encouraged to start with a simple implementation of algorithm, without worrying about the quadratic run time requirement. Once we were sure the simple solution was correct, a more efficient solution was implemented with each step 1-4 running in constant time.
+
+
+# Optimizations #
+
+## 1. identify a free man ##
+We kept a list of free men and treated it like a stack
+  * Pop from top, append to top (end of list) are O(1)
+  * We pop men off when they become engaged, and append if their fiance leaves and they are single again
+
+## 2. identify the highest-ranked woman to whom he has not yet proposed ##
+Each man has an iterable list of his preferences
+  * We iterate through the woman in order and check if they are engaged
+  * We kept a dictionary of engagements to make the look up O(1)
+
+## 3. if the woman is currently engaged, identify her current partner ##
+We used a dictionary to store the engaged couples
+  * Dictionaries allow for O(1) look ups
+  * We look up the woman's current partner using the subscript operator
+
+## 4. for woman w and men m and m', decide which is preferred by w ##
+For each woman, we used a dictionary to rank their preference for each man
+  * For example, woman 1 prefers men 4 3 1 2
+    * Since man 4 is in rank 1, the dictionary entry will be (4, 1)
+    * Man 3 is in rank 2, so (3, 2) and so on.
+  * Determining woman w's highest preferences is O(1) because we can use the dictionary look up to compare the ranks between two men.
+
+# Testing #
+  * We wrote a check function that validates each pair of man-woman engagements. All pairs are valid if there is no pair that both prefer each other to their current partners.
+  * We also created a random generator to make acceptance tests
+
+# Results #
+  * Without optimizations, Sphere accepted our result in 1.11 seconds (fastest)
+  * Interestingly, adding optimizations slowed down our results
+    * Without optimizations: 1.31, 1.59, 1.22
+    * With optimizations: 2.19, 2.70, 2.32
+    * One reason might be because of Sphere's test input.  We don't know what it is, so it could very well not make the fullest use of the optimizations.
+  * It should also be noted that our output is sorted by strings, not ints. Therefore, the couples with man 1 and 10 will be outputted before the couple with man 2.
